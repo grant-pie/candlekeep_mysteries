@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Handout</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="image-page">
+    <h1 id="title">Handout</h1>
+    <div class="image-frame">
+      <img id="photo" src="" alt="">
+    </div>
+    <p id="waiting" class="caption" hidden>This handout hasn't been revealed yet. Check back soon!</p>
+    <p id="caption" class="caption"></p>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-database-compat.js"></script>
+  <script src="js/firebase-config.js"></script>
+  <script src="js/images-data.js"></script>
+  <script>
+    const params = new URLSearchParams(location.search);
+    const id = params.get('id');
+    const entry = IMAGES.find(img => img.id === id);
+
+    if (!entry) {
+      document.querySelector('.image-page').innerHTML =
+        '<h1>Handout not found</h1><a class="back-link" href="index.html">&larr; Back to all handouts</a>';
+    } else {
+      document.title = entry.title;
+      document.getElementById('title').textContent = entry.title;
+      document.getElementById('photo').alt = entry.title;
+
+      const frame = document.querySelector('.image-frame');
+      const waiting = document.getElementById('waiting');
+      const captionEl = document.getElementById('caption');
+      if (entry.caption) {
+        captionEl.textContent = entry.caption;
+      } else {
+        captionEl.remove();
+      }
+
+      db.ref('revealed/' + entry.id).on('value', snapshot => {
+        const revealed = snapshot.val() === true;
+        frame.hidden = !revealed;
+        waiting.hidden = revealed;
+        if (revealed) {
+          document.getElementById('photo').src = entry.file;
+        }
+      });
+    }
+  </script>
+</body>
+</html>

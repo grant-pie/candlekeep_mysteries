@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Candlekeep Mysteries — Handouts</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <h1>Candlekeep Mysteries</h1>
+  <p class="subtitle">Handout Gallery</p>
+
+  <div id="gallery" class="gallery"></div>
+  <p id="emptyState" class="empty-state" hidden>
+    No handouts revealed yet. Check back once your DM shares one!
+  </p>
+
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-database-compat.js"></script>
+  <script src="js/firebase-config.js"></script>
+  <script src="js/images-data.js"></script>
+  <script>
+    const gallery = document.getElementById('gallery');
+    const emptyState = document.getElementById('emptyState');
+
+    function render(revealed) {
+      gallery.innerHTML = '';
+      const visible = IMAGES.filter(img => revealed[img.id]);
+
+      if (!visible.length) {
+        emptyState.hidden = false;
+        return;
+      }
+      emptyState.hidden = true;
+
+      for (const img of visible) {
+        const a = document.createElement('a');
+        a.className = 'card';
+        a.href = `image.html?id=${encodeURIComponent(img.id)}`;
+
+        const thumb = document.createElement('img');
+        thumb.src = img.file;
+        thumb.alt = img.title;
+        thumb.loading = 'lazy';
+
+        const title = document.createElement('div');
+        title.className = 'card-title';
+        title.textContent = img.title;
+
+        a.appendChild(thumb);
+        a.appendChild(title);
+        gallery.appendChild(a);
+      }
+    }
+
+    db.ref('revealed').on('value', snapshot => {
+      render(snapshot.val() || {});
+    });
+  </script>
+</body>
+</html>

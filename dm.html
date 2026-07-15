@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DM Controls — Candlekeep Mysteries</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <h1>DM Controls</h1>
+  <p class="subtitle">Toggle a handout on to reveal it to players instantly</p>
+
+  <div id="list" class="dm-list"></div>
+
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-database-compat.js"></script>
+  <script src="js/firebase-config.js"></script>
+  <script src="js/images-data.js"></script>
+  <script>
+    const list = document.getElementById('list');
+    const rows = {};
+
+    for (const img of IMAGES) {
+      const row = document.createElement('div');
+      row.className = 'dm-row';
+
+      const label = document.createElement('span');
+      label.className = 'dm-row-title';
+      label.textContent = img.title;
+
+      const link = document.createElement('a');
+      link.className = 'dm-row-link';
+      link.href = `image.html?id=${encodeURIComponent(img.id)}`;
+      link.textContent = 'view';
+      link.target = '_blank';
+
+      const toggle = document.createElement('label');
+      toggle.className = 'switch';
+      const checkbox = document.createElement('input');
+      checkbox.type = 'checkbox';
+      const slider = document.createElement('span');
+      slider.className = 'slider';
+      toggle.appendChild(checkbox);
+      toggle.appendChild(slider);
+
+      checkbox.addEventListener('change', () => {
+        db.ref('revealed/' + img.id).set(checkbox.checked);
+      });
+
+      row.appendChild(toggle);
+      row.appendChild(label);
+      row.appendChild(link);
+      list.appendChild(row);
+      rows[img.id] = checkbox;
+    }
+
+    db.ref('revealed').on('value', snapshot => {
+      const revealed = snapshot.val() || {};
+      for (const id in rows) {
+        rows[id].checked = revealed[id] === true;
+      }
+    });
+  </script>
+</body>
+</html>
