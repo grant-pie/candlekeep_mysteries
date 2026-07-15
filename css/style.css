@@ -121,8 +121,9 @@ h1 {
 }
 
 .back-link {
-  display: inline-block;
-  margin-top: 2rem;
+  display: block;
+  width: fit-content;
+  margin: 2rem auto 0;
   color: var(--accent);
   text-decoration: none;
   border: 1px solid var(--accent);
