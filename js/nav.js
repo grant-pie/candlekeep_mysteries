@@ -1,5 +1,6 @@
 const NAV_ITEMS = [
-  { href: "index.html", label: "Merchant Ledger" },
+  { href: "index.html", label: "Home" },
+  { href: "ledger.html", label: "Merchant Ledger" },
   { href: "handouts/index.html", label: "Handouts" },
   { href: "books.html", label: "Books" },
   { href: "candlekeep.html", label: "Candlekeep" },

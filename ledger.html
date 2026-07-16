@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Candlekeep Merchant Ledger</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=IM+Fell+English+SC&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="page">
+
+  <header class="site-header">
+    <div class="header-ornament">&#10023;</div>
+    <h1 class="site-title">The Candlekeep Ledger</h1>
+    <p class="site-subtitle">A traveling record of merchants, their wares, and their prices</p>
+    <div class="header-ornament">&#10023;</div>
+  </header>
+
+  <nav class="site-nav" id="site-nav"></nav>
+  <script src="js/nav.js"></script>
+
+  <nav class="merchant-tabs" id="merchantTabs" aria-label="Choose a merchant"></nav>
+
+  <section class="merchant-banner" id="merchantBanner"></section>
+
+  <section class="controls">
+    <div class="control-group control-search">
+      <label for="searchInput">Search wares</label>
+      <input type="text" id="searchInput" placeholder="Search by name...">
+    </div>
+    <div class="control-group">
+      <label for="categoryFilter">Category</label>
+      <select id="categoryFilter"><option value="">All categories</option></select>
+    </div>
+    <div class="control-group">
+      <label for="rarityFilter">Rarity</label>
+      <select id="rarityFilter"><option value="">All rarities</option></select>
+    </div>
+    <div class="control-group control-sale">
+      <label for="saleOnlyFilter">&nbsp;</label>
+      <label class="checkbox-label">
+        <input type="checkbox" id="saleOnlyFilter">
+        <span>On sale only</span>
+      </label>
+    </div>
+    <div class="control-group control-count">
+      <span id="resultCount"></span>
+    </div>
+  </section>
+
+  <main class="item-grid" id="itemGrid" aria-live="polite"></main>
+
+  <p class="empty-state" id="emptyState" hidden>The shelves here are bare of anything matching your search.</p>
+
+  <footer class="site-footer">
+    <p>Prices subject to the whims of supply, demand, and merchant temperament.</p>
+  </footer>
+
+</div>
+
+<script src="js/app.js"></script>
+</body>
+</html>
