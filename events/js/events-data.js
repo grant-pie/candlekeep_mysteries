@@ -237,7 +237,7 @@ const EVENTS = [
   {
     id: "book-of-the-raven",
     title: "Book of the Raven",
-    image: "images/book3.png",
+    image: "images/Book3.png",
     text: [
       "The Book of the Raven is the firsthand account (written in Common) of an anonymous author who, after falling off her horse and breaking her leg, was rescued and befriended by Vistani travelers who graciously nursed her back to health. The author and her horse traveled with the Vistani for three months, during which the author spent most of her time laid up in a Vistani covered wagon, where she took to writing this book to pass the time. Although a dozen Vistani are colorfully described in the tome, only two are mentioned by name: Drasha, a teenaged girl who applied bandages and poultices to the author's wounded leg, and Darzin, a one-armed boy with a terrible fear of wolves who sang beautiful songs to help the author take her mind off the pain. The book provides a detailed account of the Vistani way of life, with emphasis on their food and music. Their overland journey is also discussed, albeit from the viewpoint of one who spent most of it inside a covered wagon. The author describes rough roads, days of travel through impenetrable mist and thick forest, crackling fires on cold nights,",
       "Vistani:",
