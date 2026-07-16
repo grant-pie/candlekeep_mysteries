@@ -1,0 +1,19 @@
+[
+  {
+    "name": "The Joy of Extradimensional Spaces",
+    "image": "images/books/Book1.png",
+    "physical": "A heavy tome. Its thick covers are made of ornately tooled leather decorated with gold filigree. Of particular interest is the illustration on the cover: the bust of an imposing spellcaster.",
+    "contents": "A rambling but earnest treatise on pocket dimensions, from simple bags of holding to sprawling demiplanar mansions. The author devotes an entire chapter to a folding vault of their own design, sketching the stitching pattern in careful diagrams and boasting that it can swallow a wagon's worth of goods into a space no larger than a coin purse. A hastily scrawled footnote, underlined twice as if to remind the author of their own carelessness, notes that the vault opens and reseals at the utterance of a single word: scepter. It warns that this word must never fall into the wrong hands, seemingly unaware that it has just been written plainly on the page."
+  },
+  {
+    "name": "Mazfroth's Mighty Digressions",
+    "image": "images/books/Book2.png",
+    "physical": "Seven inches wide and nine inches tall. The brown leather cover is worn from time and use. The name of the book and its author, Mazfroth Gethur, are elegantly written in cursive with black ink on the first page. The care put into the front page, however, does not apply to the rest of the book's contents. Mazfroth's handwriting is messy and hasty, as if they couldn't write down their thoughts fast enough. Furthermore, the book's 151 pages don't all match, indicating that the author kept adding more pages. The book's stitching is haphazard, and looks like it could come undone at any moment.",
+    "contents": "Mazfroth's Mighty Digressions contains a collection of eclectic essays, though not much is revealed or known about the author. Mazfroth's essays often go on long tangents. Although the topics in the book are many and varied, it is clear that divinity, the denizens of the multiverse, and the nature of magicwere subjects of particular interest to Mazfroth.",
+    "notes": [
+      "All magic depends on the Weave, an interface between casters and raw magic that is governed by Mystra, god of magic. Arcane spellcasters access the Weave directly, while divine spellcasters are granted access to it by their deities and ideals. Damage to the Weave can cause unimaginable destruction, as evidenced by the Spellplague in 1385 DR, the Year of Blue Fire.",
+      "Some scholars believe that Malar, god of the hunt, is responsible for lycanthropy. Mazfroth disagrees with this theory on the basis that not all lycanthropes are evil as Malar is. Werebears are an example of lycanthropes that are usually good.",
+      "The Abyss is ruled by demon lords—Baphomet, Demogorgon, Graz'zt, Juiblex, Orcus, Yeenoghu, Zuggtmoy, and many others. Mazfroth ties the origins of several monsters to these demon lords (saying Juiblex created all oozes, for example)."
+    ]
+  }
+]

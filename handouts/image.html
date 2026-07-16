@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Handout — Candlekeep Ledger</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=IM+Fell+English+SC&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<div class="page">
+
+  <header class="site-header">
+    <div class="header-ornament">&#10023;</div>
+    <h1 class="site-title" id="title">Handout</h1>
+    <div class="header-ornament">&#10023;</div>
+  </header>
+
+  <nav class="site-nav" id="site-nav" data-base="../"></nav>
+  <script src="../js/nav.js"></script>
+
+  <div class="image-page">
+    <div class="image-frame">
+      <img id="photo" src="" alt="">
+    </div>
+    <p id="waiting" class="empty-state" hidden>This handout hasn't been revealed yet. Check back soon!</p>
+    <p id="caption" class="caption"></p>
+    <a class="back-link" href="index.html">&larr; Back to all handouts</a>
+  </div>
+
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-database-compat.js"></script>
+<script src="js/firebase-config.js"></script>
+<script src="js/images-data.js"></script>
+<script>
+  const params = new URLSearchParams(location.search);
+  const sessionId = params.get('session');
+  const id = params.get('id');
+  const session = SESSIONS.find(s => s.id === sessionId);
+  const entry = session && session.images.find(img => img.id === id);
+
+  if (!entry) {
+    document.querySelector('.image-page').innerHTML =
+      '<p class="empty-state">Handout not found.</p><a class="back-link" href="index.html">&larr; Back to all handouts</a>';
+  } else {
+    document.title = entry.title + ' — Candlekeep Ledger';
+    document.getElementById('title').textContent = entry.title;
+    document.getElementById('photo').alt = entry.title;
+
+    const frame = document.querySelector('.image-frame');
+    const waiting = document.getElementById('waiting');
+    const captionEl = document.getElementById('caption');
+    if (entry.caption) {
+      captionEl.textContent = entry.caption;
+    } else {
+      captionEl.remove();
+    }
+
+    db.ref(`revealed/${session.id}/${entry.id}`).on('value', snapshot => {
+      const revealed = snapshot.val() === true;
+      frame.hidden = !revealed;
+      waiting.hidden = revealed;
+      if (revealed) {
+        document.getElementById('photo').src = entry.file;
+      }
+    });
+  }
+</script>
+</body>
+</html>

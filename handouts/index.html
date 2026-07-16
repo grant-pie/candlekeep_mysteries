@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Handouts — Candlekeep Ledger</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=IM+Fell+English+SC&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<div class="page">
+
+  <header class="site-header">
+    <div class="header-ornament">&#10023;</div>
+    <h1 class="site-title">Handouts</h1>
+    <p class="site-subtitle">Maps, portraits, and mysteries revealed by your Dungeon Master</p>
+    <div class="header-ornament">&#10023;</div>
+  </header>
+
+  <nav class="site-nav" id="site-nav" data-base="../"></nav>
+  <script src="../js/nav.js"></script>
+
+  <div id="gallery" class="gallery-sessions"></div>
+  <p class="empty-state" id="emptyState" hidden>No handouts revealed yet. Check back once your DM shares one!</p>
+
+  <footer class="site-footer">
+    <p>Handouts appear here the moment your Dungeon Master reveals them.</p>
+  </footer>
+
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-database-compat.js"></script>
+<script src="js/firebase-config.js"></script>
+<script src="js/images-data.js"></script>
+<script>
+  const gallery = document.getElementById('gallery');
+  const emptyState = document.getElementById('emptyState');
+
+  function render(revealed) {
+    gallery.innerHTML = '';
+    let anyVisible = false;
+
+    for (const session of SESSIONS) {
+      const sessionRevealed = revealed[session.id] || {};
+      const visibleImages = session.images.filter(img => sessionRevealed[img.id]);
+      if (!visibleImages.length) continue;
+      anyVisible = true;
+
+      const section = document.createElement('section');
+      section.className = 'gallery-session';
+
+      const heading = document.createElement('h2');
+      heading.className = 'gallery-session-title';
+      heading.textContent = session.title;
+      section.appendChild(heading);
+
+      const grid = document.createElement('div');
+      grid.className = 'gallery';
+
+      for (const img of visibleImages) {
+        const a = document.createElement('a');
+        a.className = 'card';
+        a.href = `image.html?session=${encodeURIComponent(session.id)}&id=${encodeURIComponent(img.id)}`;
+
+        const thumb = document.createElement('img');
+        thumb.src = img.file;
+        thumb.alt = img.title;
+        thumb.loading = 'lazy';
+
+        const title = document.createElement('div');
+        title.className = 'card-title';
+        title.textContent = img.title;
+
+        a.appendChild(thumb);
+        a.appendChild(title);
+        grid.appendChild(a);
+      }
+
+      section.appendChild(grid);
+      gallery.appendChild(section);
+    }
+
+    emptyState.hidden = anyVisible;
+  }
+
+  db.ref('revealed').on('value', snapshot => {
+    render(snapshot.val() || {});
+  });
+</script>
+</body>
+</html>

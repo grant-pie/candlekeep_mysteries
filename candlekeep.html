@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Candlekeep — Candlekeep Ledger</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=IM+Fell+English+SC&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="page">
+
+  <header class="site-header">
+    <div class="header-ornament">&#10023;</div>
+    <h1 class="site-title">Candlekeep</h1>
+    <p class="site-subtitle">A cake decorated with an overabundance of candles</p>
+    <div class="header-ornament">&#10023;</div>
+  </header>
+
+  <nav class="site-nav" id="site-nav"></nav>
+  <script src="js/nav.js"></script>
+
+  <div class="candlekeep-overview">
+    <div class="image-frame">
+      <img id="mapImage" alt="Map of Candlekeep" hidden>
+      <div class="image-frame-placeholder" hidden aria-hidden="true">&#128506;</div>
+    </div>
+    <p id="overviewText" class="caption"></p>
+  </div>
+
+  <main id="wards" class="ward-list" aria-live="polite"></main>
+
+  <footer class="site-footer">
+    <p>Cared for and catalogued by the Avowed, keepers of the citadel's endless knowledge.</p>
+  </footer>
+
+</div>
+
+<script src="js/candlekeep-data.js"></script>
+<script src="js/candlekeep.js"></script>
+</body>
+</html>

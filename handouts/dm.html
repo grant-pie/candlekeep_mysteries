@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DM Controls — Candlekeep Ledger</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=IM+Fell+English+SC&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<div class="page">
+
+  <header class="site-header">
+    <div class="header-ornament">&#10023;</div>
+    <h1 class="site-title">DM Controls</h1>
+    <p class="site-subtitle">Toggle a handout on to reveal it to players instantly</p>
+    <div class="header-ornament">&#10023;</div>
+  </header>
+
+  <div id="list" class="dm-sessions"></div>
+
+  <footer class="site-footer">
+    <p><a class="back-link" href="index.html" style="margin:0 auto;">&larr; Back to handouts</a></p>
+  </footer>
+
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-database-compat.js"></script>
+<script src="js/firebase-config.js"></script>
+<script src="js/images-data.js"></script>
+<script>
+  const list = document.getElementById('list');
+  const rows = {};
+  const sessionCheckboxes = {};
+
+  for (const session of SESSIONS) {
+    rows[session.id] = {};
+
+    const sessionSection = document.createElement('div');
+    sessionSection.className = 'dm-session';
+
+    const sessionHeader = document.createElement('div');
+    sessionHeader.className = 'dm-session-header';
+
+    const sessionTitle = document.createElement('span');
+    sessionTitle.className = 'dm-session-title';
+    sessionTitle.textContent = session.title;
+
+    const sessionToggle = document.createElement('label');
+    sessionToggle.className = 'switch';
+    const sessionCheckbox = document.createElement('input');
+    sessionCheckbox.type = 'checkbox';
+    const sessionSlider = document.createElement('span');
+    sessionSlider.className = 'slider';
+    sessionToggle.appendChild(sessionCheckbox);
+    sessionToggle.appendChild(sessionSlider);
+
+    sessionCheckbox.addEventListener('change', () => {
+      const updates = {};
+      for (const img of session.images) {
+        updates[img.id] = sessionCheckbox.checked;
+      }
+      db.ref('revealed/' + session.id).update(updates);
+    });
+
+    sessionHeader.appendChild(sessionTitle);
+    sessionHeader.appendChild(sessionToggle);
+    sessionSection.appendChild(sessionHeader);
+
+    const sessionList = document.createElement('div');
+    sessionList.className = 'dm-list';
+
+    for (const img of session.images) {
+      const row = document.createElement('div');
+      row.className = 'dm-row';
+
+      const label = document.createElement('span');
+      label.className = 'dm-row-title';
+      label.textContent = img.title;
+
+      const link = document.createElement('a');
+      link.className = 'dm-row-link';
+      link.href = `image.html?session=${encodeURIComponent(session.id)}&id=${encodeURIComponent(img.id)}`;
+      link.textContent = 'view';
+      link.target = '_blank';
+
+      const toggle = document.createElement('label');
+      toggle.className = 'switch';
+      const checkbox = document.createElement('input');
+      checkbox.type = 'checkbox';
+      const slider = document.createElement('span');
+      slider.className = 'slider';
+      toggle.appendChild(checkbox);
+      toggle.appendChild(slider);
+
+      checkbox.addEventListener('change', () => {
+        db.ref(`revealed/${session.id}/${img.id}`).set(checkbox.checked);
+      });
+
+      row.appendChild(toggle);
+      row.appendChild(label);
+      row.appendChild(link);
+      sessionList.appendChild(row);
+      rows[session.id][img.id] = checkbox;
+    }
+
+    sessionSection.appendChild(sessionList);
+    list.appendChild(sessionSection);
+    sessionCheckboxes[session.id] = sessionCheckbox;
+  }
+
+  db.ref('revealed').on('value', snapshot => {
+    const revealed = snapshot.val() || {};
+    for (const session of SESSIONS) {
+      const sessionRevealed = revealed[session.id] || {};
+      let onCount = 0;
+      for (const img of session.images) {
+        const isOn = sessionRevealed[img.id] === true;
+        rows[session.id][img.id].checked = isOn;
+        if (isOn) onCount++;
+      }
+      sessionCheckboxes[session.id].checked = onCount === session.images.length;
+      sessionCheckboxes[session.id].indeterminate = onCount > 0 && onCount < session.images.length;
+    }
+  });
+</script>
+</body>
+</html>

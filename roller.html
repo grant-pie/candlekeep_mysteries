@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Item Roller — Candlekeep Ledger</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=IM+Fell+English+SC&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="page">
+
+  <header class="site-header">
+    <div class="header-ornament">&#10023;</div>
+    <h1 class="site-title">Item Roller</h1>
+    <p class="site-subtitle">Reach into the reliquary and see what fate hands you</p>
+    <div class="header-ornament">&#10023;</div>
+  </header>
+
+  <nav class="site-nav" id="site-nav"></nav>
+  <script src="js/nav.js"></script>
+
+  <section class="generator-panel">
+    <label style="font-family:'IM Fell English SC', serif; font-size:1.1rem;">Rarities to draw from</label>
+    <div class="rarity-checklist" id="rarityChecklist"></div>
+
+    <label style="font-family:'IM Fell English SC', serif; font-size:1.1rem;">Types to draw from</label>
+    <div class="rarity-checklist" id="typeChecklist"></div>
+
+    <button class="roll-button" id="rollButton" type="button">Draw an Item</button>
+
+    <div class="reveal-area" id="revealArea" aria-live="polite">
+      <p class="reveal-placeholder">The reliquary awaits your hand...</p>
+    </div>
+
+    <div class="roll-history" id="rollHistory" hidden>
+      <h3>Recent Draws</h3>
+      <ul id="rollHistoryList"></ul>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <p>What fate deals, fate does not take back. Draw responsibly.</p>
+  </footer>
+
+</div>
+
+<script src="js/roller.js"></script>
+</body>
+</html>

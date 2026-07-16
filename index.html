@@ -1,61 +1,67 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Candlekeep Mysteries — Handouts</title>
-  <link rel="stylesheet" href="css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Candlekeep Merchant Ledger</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=IM+Fell+English+SC&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <h1>Candlekeep Mysteries</h1>
-  <p class="subtitle">Handout Gallery</p>
 
-  <div id="gallery" class="gallery"></div>
-  <p id="emptyState" class="empty-state" hidden>
-    No handouts revealed yet. Check back once your DM shares one!
-  </p>
+<div class="page">
 
-  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-database-compat.js"></script>
-  <script src="js/firebase-config.js"></script>
-  <script src="js/images-data.js"></script>
-  <script>
-    const gallery = document.getElementById('gallery');
-    const emptyState = document.getElementById('emptyState');
+  <header class="site-header">
+    <div class="header-ornament">&#10023;</div>
+    <h1 class="site-title">The Candlekeep Ledger</h1>
+    <p class="site-subtitle">A traveling record of merchants, their wares, and their prices</p>
+    <div class="header-ornament">&#10023;</div>
+  </header>
 
-    function render(revealed) {
-      gallery.innerHTML = '';
-      const visible = IMAGES.filter(img => revealed[img.id]);
+  <nav class="site-nav" id="site-nav"></nav>
+  <script src="js/nav.js"></script>
 
-      if (!visible.length) {
-        emptyState.hidden = false;
-        return;
-      }
-      emptyState.hidden = true;
+  <nav class="merchant-tabs" id="merchantTabs" aria-label="Choose a merchant"></nav>
 
-      for (const img of visible) {
-        const a = document.createElement('a');
-        a.className = 'card';
-        a.href = `image.html?id=${encodeURIComponent(img.id)}`;
+  <section class="merchant-banner" id="merchantBanner"></section>
 
-        const thumb = document.createElement('img');
-        thumb.src = img.file;
-        thumb.alt = img.title;
-        thumb.loading = 'lazy';
+  <section class="controls">
+    <div class="control-group control-search">
+      <label for="searchInput">Search wares</label>
+      <input type="text" id="searchInput" placeholder="Search by name...">
+    </div>
+    <div class="control-group">
+      <label for="categoryFilter">Category</label>
+      <select id="categoryFilter"><option value="">All categories</option></select>
+    </div>
+    <div class="control-group">
+      <label for="rarityFilter">Rarity</label>
+      <select id="rarityFilter"><option value="">All rarities</option></select>
+    </div>
+    <div class="control-group control-sale">
+      <label for="saleOnlyFilter">&nbsp;</label>
+      <label class="checkbox-label">
+        <input type="checkbox" id="saleOnlyFilter">
+        <span>On sale only</span>
+      </label>
+    </div>
+    <div class="control-group control-count">
+      <span id="resultCount"></span>
+    </div>
+  </section>
 
-        const title = document.createElement('div');
-        title.className = 'card-title';
-        title.textContent = img.title;
+  <main class="item-grid" id="itemGrid" aria-live="polite"></main>
 
-        a.appendChild(thumb);
-        a.appendChild(title);
-        gallery.appendChild(a);
-      }
-    }
+  <p class="empty-state" id="emptyState" hidden>The shelves here are bare of anything matching your search.</p>
 
-    db.ref('revealed').on('value', snapshot => {
-      render(snapshot.val() || {});
-    });
-  </script>
+  <footer class="site-footer">
+    <p>Prices subject to the whims of supply, demand, and merchant temperament.</p>
+  </footer>
+
+</div>
+
+<script src="js/app.js"></script>
 </body>
 </html>
