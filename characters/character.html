@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Character — Candlekeep Mysteries</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=IM+Fell+English+SC&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<div class="page">
+
+  <header class="site-header">
+    <div class="header-ornament">&#10023;</div>
+    <h1 class="site-title" id="title">Character</h1>
+    <div class="header-ornament">&#10023;</div>
+  </header>
+
+  <div class="character-page">
+    <div class="image-frame">
+      <img id="portrait" alt="" hidden>
+      <div class="image-frame-placeholder" hidden aria-hidden="true">&#128100;</div>
+    </div>
+
+    <div class="character-text">
+      <section class="character-section">
+        <h2 class="character-section-title">Physical Description</h2>
+        <p id="description"></p>
+      </section>
+
+      <section class="character-section">
+        <h2 class="character-section-title">Background</h2>
+        <div id="background"></div>
+      </section>
+    </div>
+  </div>
+
+  <a class="back-link" href="index.html">&larr; Back to Characters</a>
+
+</div>
+
+<script src="js/characters-data.js"></script>
+<script>
+  const params = new URLSearchParams(location.search);
+  const id = params.get('id');
+  const character = CHARACTERS.find(c => c.id === id);
+  const page = document.querySelector('.character-page');
+
+  if (!character) {
+    page.innerHTML = '<p class="empty-state">This character could not be found.</p>';
+  } else {
+    document.title = character.name + ' — Candlekeep Mysteries';
+    document.getElementById('title').textContent = character.name;
+
+    const portrait = document.getElementById('portrait');
+    const placeholder = document.querySelector('.image-frame-placeholder');
+    portrait.alt = character.name;
+    portrait.onload = () => { portrait.hidden = false; };
+    portrait.onerror = () => { placeholder.hidden = false; };
+    portrait.src = character.image;
+
+    document.getElementById('description').textContent = character.description;
+
+    const backgroundContainer = document.getElementById('background');
+    for (const line of character.background) {
+      const p = document.createElement('p');
+      p.textContent = line;
+      backgroundContainer.appendChild(p);
+    }
+  }
+</script>
+</body>
+</html>

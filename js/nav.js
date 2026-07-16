@@ -4,6 +4,7 @@ const NAV_ITEMS = [
   { href: "handouts/index.html", label: "Handouts" },
   { href: "books.html", label: "Books" },
   { href: "candlekeep.html", label: "Candlekeep" },
+  { href: "characters/index.html", label: "Characters" },
 ];
 
 /*

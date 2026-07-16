@@ -1300,6 +1300,121 @@ body {
   font-style: italic;
 }
 
+/* ---------- Characters ---------- */
+
+.character-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.3rem;
+}
+
+.character-card {
+  display: block;
+  background: var(--card-bg);
+  border: 1px solid var(--border-brown);
+  border-radius: 8px;
+  padding: 0.9rem 0.9rem 1rem;
+  text-decoration: none;
+  color: var(--ink);
+  box-shadow: 0 2px 6px var(--shadow-deep);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.character-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 12px var(--shadow-deep);
+}
+
+.character-portrait-wrap {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  border: 2px solid var(--border-brown);
+  border-radius: 4px;
+  overflow: hidden;
+  background: linear-gradient(160deg, var(--parchment-dark), var(--parchment));
+  box-shadow: inset 0 0 16px rgba(0,0,0,0.2);
+  margin-bottom: 0.6rem;
+}
+
+.character-portrait {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.character-portrait-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  color: var(--ink-faint);
+}
+
+.character-portrait-placeholder[hidden] {
+  display: none;
+}
+
+.character-card-name {
+  font-family: 'IM Fell English SC', serif;
+  font-size: 1.15rem;
+  text-align: center;
+}
+
+/* ---------- Single character view ---------- */
+
+.character-page {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.character-page .image-frame {
+  display: block;
+  width: 260px;
+  margin: 0 auto;
+}
+
+.character-page .image-frame img {
+  width: 100%;
+  max-height: none;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+}
+
+.character-page .image-frame-placeholder {
+  aspect-ratio: 3 / 4;
+}
+
+.character-text {
+  margin: 1.8rem auto 0;
+  max-width: 680px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+
+.character-section-title {
+  font-family: 'IM Fell English SC', serif;
+  font-size: 1.3rem;
+  color: var(--ink);
+  margin: 0 0 0.6rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 2px solid var(--border-brown);
+}
+
+.character-section p {
+  margin: 0 0 0.9rem;
+  color: var(--ink-soft);
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.character-section p:last-child {
+  margin-bottom: 0;
+}
+
 /* ---------- Landing page ---------- */
 
 .landing-intro {
