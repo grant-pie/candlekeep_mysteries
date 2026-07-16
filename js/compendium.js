@@ -184,10 +184,14 @@
     renderGrid();
   });
 
-  fetch('js/magic_items.json')
-    .then(r => r.json())
-    .then(items => {
+  Promise.all([
+    fetch('js/magic_items.json').then(r => r.json()),
+    fetch('js/party_items.json').then(r => r.json())
+  ])
+    .then(([items, partyItemNames]) => {
+      const owned = new Set(partyItemNames.map(n => n.toLowerCase()));
       state.items = items
+        .filter(i => owned.has(i.name.toLowerCase()))
         .map(i => ({ ...i, rarity: titleCase(i.rarity) }))
         .sort((a, b) => a.name.localeCompare(b.name));
       renderFilterOptions();

@@ -5,12 +5,12 @@ const NAV_ITEMS = [
   { href: "books.html", label: "Books" },
   { href: "candlekeep.html", label: "Candlekeep" },
   { href: "characters/index.html", label: "Characters" },
+  { href: "compendium.html", label: "Magic Item Compendium" },
 ];
 
 /*
   { href: "slotmachine.html", label: "Spin to Win!" },
   { href: "roller.html", label: "Item Roller" },
-  { href: "compendium.html", label: "Magic Item Compendium" },
 */
 
 (function renderSiteNav() {
