@@ -21,11 +21,25 @@ const NAV_ITEMS = [
   const inHandouts = /\/handouts\/?($|\/)/.test(path);
   const currentFile = path.split("/").pop() || "index.html";
 
-  container.innerHTML = NAV_ITEMS.map(({ href, label }) => {
+  const links = NAV_ITEMS.map(({ href, label }) => {
     const isActive = href === "handouts/index.html"
       ? inHandouts
       : !inHandouts && currentFile === href;
     const cls = "site-nav-link" + (isActive ? " active" : "");
     return `<a class="${cls}" href="${base}${href}">${label}</a>`;
   }).join("\n");
+
+  container.innerHTML = `
+    <button type="button" class="site-nav-toggle" id="site-nav-toggle" aria-expanded="false" aria-controls="site-nav-links">
+      <span class="site-nav-toggle-icon" aria-hidden="true">&#9776;</span> Menu
+    </button>
+    <div class="site-nav-links" id="site-nav-links">${links}</div>
+  `;
+
+  const toggle = document.getElementById("site-nav-toggle");
+  const linksPanel = document.getElementById("site-nav-links");
+  toggle.addEventListener("click", () => {
+    const isOpen = linksPanel.classList.toggle("open");
+    toggle.setAttribute("aria-expanded", String(isOpen));
+  });
 })();

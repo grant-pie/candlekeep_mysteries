@@ -123,10 +123,18 @@ body {
 /* ---------- Site nav ---------- */
 
 .site-nav {
+  margin-bottom: 1.5rem;
+}
+
+.site-nav-toggle {
+  display: none;
+}
+
+.site-nav-links {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 0.5rem;
-  margin-bottom: 1.5rem;
 }
 
 .site-nav-link {
@@ -137,6 +145,7 @@ body {
   border-bottom: 2px solid transparent;
   font-size: 1rem;
   letter-spacing: 0.02em;
+  white-space: nowrap;
 }
 
 .site-nav-link:hover {
@@ -1351,4 +1360,46 @@ body {
   .site-title { font-size: 2rem; }
   .merchant-banner { flex-direction: column; align-items: center; text-align: center; }
   .control-count { margin-left: 0; }
+
+  .site-nav-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    background: var(--card-bg);
+    border: 1px solid var(--border-brown);
+    border-radius: 6px;
+    padding: 0.55rem 1rem;
+    font-family: 'IM Fell English SC', serif;
+    font-size: 1rem;
+    color: var(--ink);
+    cursor: pointer;
+  }
+
+  .site-nav-toggle-icon {
+    font-size: 1.1rem;
+    line-height: 1;
+  }
+
+  .site-nav-links {
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.1rem;
+    margin-top: 0.5rem;
+    background: var(--card-bg);
+    border: 1px solid var(--border-brown);
+    border-radius: 6px;
+    padding: 0.4rem;
+  }
+
+  .site-nav-links.open {
+    display: flex;
+  }
+
+  .site-nav-link {
+    text-align: center;
+    padding: 0.65rem 1rem;
+  }
 }
