@@ -103,7 +103,7 @@ const SESSIONS = [
       {
         id: "rats",
         title: "Rats!",
-        file: "images/session2/rats!.jpeg",
+        file: "images/session2/rats!.png",
       },
       {
         id: "silas-vane",
