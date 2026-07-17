@@ -1,11 +1,11 @@
 const NAV_ITEMS = [
   { href: "index.html", label: "Home" },
+  { href: "candlekeep.html", label: "Candlekeep" },
   { href: "ledger.html", label: "Merchant Ledger" },
+  { href: "characters/index.html", label: "Characters" },
   { href: "handouts/index.html", label: "Handouts" },
   { href: "books.html", label: "Books" },
-  { href: "candlekeep.html", label: "Candlekeep" },
-  { href: "characters/index.html", label: "Characters" },
-  { href: "compendium.html", label: "Magic Item Compendium" },
+  { href: "compendium.html", label: "Wondrous Item Compendium" },
 ];
 
 /*

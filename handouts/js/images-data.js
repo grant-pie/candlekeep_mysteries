@@ -50,9 +50,9 @@ const SESSIONS = [
         file: "images/session3/Wooden Bridge.png",
       },
       {
-        id: "wytchway-the-boar-king",
-        title: "Wytchway - The Boar King",
-        file: "images/session3/Wytchway - The Boar King.png",
+        id: "wytchway-the-pig-king",
+        title: "Wytchway - The Pig King",
+        file: "images/session3/Wytchway - The Pig King.png",
       },
       {
         id: "wytchway-arrival",
@@ -67,12 +67,17 @@ const SESSIONS = [
       {
         id: "figurine",
         title: "Figurine",
-        file: "images/session3/Figurine.png",
+        file: "images/session3/figurine.png",
       },
       {
-        id: "book3",
-        title: "Book of the Raven",
-        file: "images/session3/book3.png",
+        id: "the-meeting",
+        title: "The Meeting",
+        file: "images/session3/The Meeting.png",
+      },
+      {
+        id: "the-meeting-2",
+        title: "The Meeting II",
+        file: "images/session3/The Meeting2.png",
       },
     ],
   },
@@ -91,34 +96,14 @@ const SESSIONS = [
         file: "images/session2/Korvala.png",
       },
       {
-        id: "korvala-hybrid",
-        title: "Korvala (Hybrid)",
-        file: "images/session2/Korvala(Hybrid).png",
-      },
-      {
         id: "magister-ellion-thricefold",
         title: "Magister Ellion Thricefold",
         file: "images/session2/Magister Ellion Thricefold.png",
       },
       {
-        id: "mara-hestwick",
-        title: "Mara Hestwick",
-        file: "images/session2/Mara Hestwick.png",
-      },
-      {
-        id: "mushika",
-        title: "Mushika",
-        file: "images/session2/Mushika.png",
-      },
-      {
-        id: "mushika-human",
-        title: "Mushika (Human)",
-        file: "images/session2/Mushika(Human).png",
-      },
-      {
         id: "rats",
         title: "Rats!",
-        file: "images/session2/Rats!.jpeg",
+        file: "images/session2/rats!.jpeg",
       },
       {
         id: "silas-vane",
@@ -134,6 +119,26 @@ const SESSIONS = [
         id: "yalerion-highscroll",
         title: "Yalerion Highscroll",
         file: "images/session2/Yalerion Highscroll.png",
+      },
+      {
+        id: "arrival-at-baldurs-gate",
+        title: "Arrival at Baldur's Gate",
+        file: "images/session2/Arrival at Baldurs Gate.png",
+      },
+      {
+        id: "mushika-attacks",
+        title: "Mushika Attacks!",
+        file: "images/session2/Mushika Attacks!.png",
+      },
+      {
+        id: "the-crooked-hearth",
+        title: "The Crooked Hearth",
+        file: "images/session2/The Crooked Hearth.png",
+      },
+      {
+        id: "the-wide",
+        title: "The Wide",
+        file: "images/session2/The Wide.png",
       },
     ],
   },

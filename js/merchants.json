@@ -4,7 +4,7 @@
     "name": "Thistlewick's Provisions & Curios",
     "keeper": "Bramwell Thistlewick",
     "category": "Adventuring Gear",
-    "icon": "🎒",
+    "icon": "fa-solid fa-suitcase",
     "blurb": "A cluttered stall of rope, lanterns, and things nobody can quite explain. If it doesn't cast a spell but might save your life, Bramwell probably has three of them under the counter."
   },
   {
@@ -12,7 +12,7 @@
     "name": "The Temple of Oghma",
     "keeper": "Mistress Yolanda Ashcombe",
     "category": "Potions",
-    "icon": "🧪",
+    "icon": "fa-solid fa-flask",
     "blurb": "Shelves of bottled miracles and worse. The proprietress mixes tonics behind a curtain and insists every bad smell in the shop is 'supposed to be there.'"
   },
   {
@@ -20,7 +20,7 @@
     "name": "Khe'ril Hammerbind Smithy",
     "keeper": "Khe'ril Hammerbind",
     "category": "Weapons and Armor",
-    "icon": "⚔️",
+    "icon": "fa-solid fa-hammer",
     "blurb": "The ring of a hammer on enchanted steel never stops here. Khe'ril and his kin forge, mend, and occasionally argue loudly with blades that talk back."
   },
   {
@@ -28,7 +28,7 @@
     "name": "Quillheart Arcanum",
     "keeper": "Ozymandias Quillheart",
     "category": "Wands and Scrolls",
-    "icon": "📜",
+    "icon": "fa-solid fa-wand-magic-sparkles",
     "blurb": "A tower room stuffed floor to ceiling with scrolls, staves, and stranger things. Ozymandias reads while he talks, which makes conversation difficult but haggling easy."
   }
 ]

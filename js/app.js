@@ -6,7 +6,7 @@
     id: ALL_ID,
     name: 'The Full Ledger',
     keeper: 'Every stall, table, and cart',
-    icon: '📖',
+    icon: 'fa-solid fa-book',
     blurb: 'Every merchant’s wares, laid out side by side. Handy for comparison shopping, if you don’t mind the walk between stalls.'
   };
 
@@ -134,7 +134,7 @@
     const all = [ALL_MERCHANT, ...MERCHANTS];
     els.tabs.innerHTML = all.map(m => `
       <button class="merchant-tab${m.id === state.merchant ? ' active' : ''}" data-id="${m.id}" type="button">
-        <span class="tab-icon">${m.icon}</span><span>${m.name}</span>
+        <i class="tab-icon ${m.icon}" aria-hidden="true"></i><span>${m.name}</span>
       </button>
     `).join('');
 
@@ -153,7 +153,7 @@
   function renderBanner() {
     const m = merchantById(state.merchant);
     els.banner.innerHTML = `
-      <div class="banner-icon">${m.icon}</div>
+      <i class="banner-icon ${m.icon}" aria-hidden="true"></i>
       <div class="banner-text">
         <h2>${m.name}</h2>
         <p class="banner-keeper">Proprietor: ${m.keeper}</p>
