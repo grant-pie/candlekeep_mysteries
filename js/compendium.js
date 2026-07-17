@@ -88,8 +88,13 @@
       ? `<p class="item-source-link"><a href="${item.url}" target="_blank" rel="noopener">View source ↗</a></p>`
       : '';
 
+    const imageHTML = item.image
+      ? `<img class="item-image" src="${item.image}" alt="${item.name}" loading="lazy">`
+      : '';
+
     return `
       <article class="item-card${item.effect ? '' : ' unidentified'}">
+        ${imageHTML}
         <div class="item-card-header">
           <h3 class="item-name">${item.name}</h3>
         </div>
@@ -188,11 +193,11 @@
     fetch('js/magic_items.json').then(r => r.json()),
     fetch('js/party_items.json').then(r => r.json())
   ])
-    .then(([items, partyItemNames]) => {
-      const owned = new Set(partyItemNames.map(n => n.toLowerCase()));
+    .then(([items, partyItems]) => {
+      const owned = new Map(partyItems.map(p => [p.name.toLowerCase(), p.image]));
       state.items = items
         .filter(i => owned.has(i.name.toLowerCase()))
-        .map(i => ({ ...i, rarity: titleCase(i.rarity) }))
+        .map(i => ({ ...i, rarity: titleCase(i.rarity), image: owned.get(i.name.toLowerCase()) }))
         .sort((a, b) => a.name.localeCompare(b.name));
       renderFilterOptions();
       renderGrid();
