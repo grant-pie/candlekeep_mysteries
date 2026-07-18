@@ -1,0 +1,126 @@
+[
+  {
+    "id": "session2",
+    "title": "Session 2",
+    "monsters": [
+      {
+        "name": "Giant Rat",
+        "challenge": "1/8",
+        "image": "images/monsters/session2/Giant Rat.png",
+        "description": "This filthy rat is the size of a small dog. It has a coat of coarse fur, a long and scabby tail, and two glittering eyes.",
+        "info": "Giant rats grow up to 2 feet long and weigh up to 25 pounds. They are common menaces in dungeons and city sewers alike."
+      },
+      {
+        "name": "Gingwatzim",
+        "challenge": "2",
+        "image": "images/monsters/session2/Gingwatzim.png",
+        "description": "A luminous spehre of energy that floats in the air, with a strange, otherworldly presence.",
+        "info": "A gingwatzim is a peculiar form of life created by a spell or a ritual. The magic that brings it into being draws on spirit energy from the Ethereal Plane to give the gingwatzim its true form-that of a luminous (but not too bright) sphere of ectoplasm roughly 3 feet in diameter."
+      },
+      {
+        "name": "Jackalwere",
+        "challenge": "1/2",
+        "image": "images/monsters/session2/Jackalwere.png",
+        "description": "This armored humanoid has a jackal’s head, bulging muscles, and a gaze that makes the world drift away.",
+        "info": "Jackalweres are evil, supernatural jackals born with the ability to assume human form. Some folks superstitiously consider jackalweres to be emissaries of evil spirits or wicked desert gods, and it is easy to understand why, as they can take the shape of a human and possess a keen intellect; however, they also have a taste for murder and humanoid flesh."
+      },
+      {
+        "name": "Mushika - Wererat",
+        "challenge": "2",
+        "image": "images/monsters/session2/Mushika.png",
+        "description": "Mushika bears nasty scars from his time in the thieves' guilds of Baldur's Gate.",
+        "info": "This wererat targets those who wander along the Sword Coast."
+      },
+      {
+        "name": "Rug of Smothering",
+        "challenge": "2",
+        "image": "images/monsters/session2/Rug of Smothering.png",
+        "description": "A magical rug springs to life and attacks you, wrapping around you and suffocating you.",
+        "info": "This murderous animated rug wraps around its victims and suffocates them."
+      }
+    ]
+  },
+  {
+    "id": "session1",
+    "title": "Session 1",
+    "monsters": [
+      {
+        "name": "Animated Broom",
+        "challenge": "1/4",
+        "image": "images/monsters/session1/Animated Broom.png",
+        "description": "As you disturb the sweeping broom, it springs to life and attacks you.",
+        "info": "A broom that has been animated and is capable of moving and attacking on its own."
+      },
+      {
+        "name": "Animated Chained Library",
+        "challenge": "1",
+        "image": "images/monsters/session1/Animated Chained Library.png",
+        "description": "A library of books bound together with chains, moving and attacking on its own.",
+        "info": "an animated library is a magical construct that has been imbued with life and can move and attack on its own. It is often used as a guardian for valuable books or as a tool for spellcasters."
+      },
+      {
+        "name": "Book Swarm",
+        "challenge": "1/4",
+        "image": "images/monsters/session1/Book Swarm.png",
+        "description": "A large swarm of books flies through the air, attacking anyone in its path.",
+        "info": "An animated swarm of books, which can be created by a spellcaster or other magical means. The swarm is made up of many individual books that move and attack as a single entity."
+      },
+      {
+        "name": "Crawling Claw",
+        "challenge": "0",
+        "image": "images/monsters/session1/Crawling Claw.png",
+        "description": "With a jolt, this severed hand springs to life, its fingers propelling it forth at great speed like a deformed spider.",
+        "info": "Some say the origins of the crawling claw lie in the experiments of demented necromancers contracted to construct tiny assassins. Other tales tell of gruesome prosthetics sparked to life by evil magic, which then developed primitive sentience and vengefully strangled their hosts. Regardless, the crawling claw is an efficient killing tool."
+      },
+      {
+        "name": "Faerie Dragon",
+        "challenge": "1",
+        "image": "images/monsters/session1/Faerie Dragon.png",
+        "description": "A pair of brightly colored butterfly wings sprouts from the back of this miniature dragon.",
+        "info": "Related to pseudodragons, faerie dragons are whimsical, playful pranksters that spend most of their time either relaxing in cool forest glades or engaged in some sort of prank. Although such mischief is usually spontaneous, some faerie dragons have been known to spend months or even years in preparation of one truly spectacular joke. Travelers making their way through lands known to be inhabited by these good-natured – but sometimes annoying – tricksters are advised to keep up their guard lest they face all manner of creative annoyances (horses painted with berry juice, squirrels placed inside bedrolls, and clothing decorating high branches being a few examples)"
+      },
+      {
+        "name": "Animated Sword",
+        "challenge": "1/4",
+        "image": "images/monsters/session1/Flying Sword.png",
+        "description": "As you open the door, a sword flies out of the room and attacks you.",
+        "info": "An animated sword is a magical weapon that has been imbued with life and can move and attack on its own."
+      },
+      {
+        "name": "Homunculus",
+        "challenge": "0",
+        "image": "images/monsters/session1/Homunculus.png",
+        "description": "This vaguely humanoid creature is about the size of a cat but looks more like a toothy, winged devil.",
+        "info": "A homunculus is a miniature servant created by a spellcaster from his own blood. They are weak combatants but make effective spies, messengers, and scouts. A homunculus’s creator determines its precise features; some are more refined looking, but most creators don’t bother to improve the creature’s appearance beyond the minimum necessary for functioning."
+      },
+      {
+        "name": "Imp",
+        "challenge": "1",
+        "image": "images/monsters/session1/Imp.png",
+        "description": "Fiendish wings and a whipping scorpion-like tail lash behind this diminutive, red-skinned nuisance.",
+        "info": "Born directly from the pits of Hell, imps are among the least of the true devils; these vicious, manipulative fiends, however, hold an important role in the corruption of mortal souls. Unfettered from the ranks and duties of diabolical armies, imps delight in any opportunity to travel to the Material Plane and subtly tempt mortals toward acts of ever-greater depravity."
+      },
+      {
+        "name": "Mimic",
+        "challenge": "2",
+        "image": "images/monsters/session1/Mimic Chair.png",
+        "description": "What appeared to be a normal chair comes to life as it grows long, glistening tentacles and a number of sharp teeth.",
+        "info": "Mimics are thought to be the result of an alchemist’s attempt to grant life to an inanimate object through the application of an eldritch reagent, the recipe for which is long lost. Over time, these strange but clever creatures have learned the ability to transform themselves into simulacra of man-made objects, particularly in locations that have infrequent traffic by small numbers of creatures, thus increasing their odds of successfully attacking their victims."
+      },
+      {
+        "name": "Quasit",
+        "challenge": "1",
+        "image": "images/monsters/session1/Quasit.png",
+        "description": "Ram horns curl back from the twisted head of this tiny winged demon, and its body is thin and wiry.",
+        "info": "The quasit is perhaps the least powerful demon, yet it is not the least respected—even quasits hold themselves above the dretch horde, and true to their natures, dretches lack the courage or drive to prove the quaits wrong. A quasit’s first role in life is that of a familiar to a spellcasting master, but those quasits who escape from this humiliating servitude become free-willed and much more dangerous."
+      },
+      {
+        "name": "Slaad Tadpole",
+        "challenge": "1/8",
+        "image": "images/monsters/session1/Slaad Tadpole.png",
+        "description": "This tiny, frog-like creature has a bloated body, a wide mouth, and a long, whip-like tail.",
+        "info": "Slaad tadpoles are ravenous, newborn slaadi. They hatch from eggs implanted into living hosts by red slaadi, but they also appear in great numbers in Limbo and other chaotic realms. Under most conditions, a slaad tadpole transforms into a blue slaad—or a green slaad."
+      }
+    ]
+  }
+]

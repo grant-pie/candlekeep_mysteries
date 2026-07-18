@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Magic Item Compendium — Candlekeep Mysteries</title>
+<title>Compendium — Candlekeep Mysteries</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=IM+Fell+English+SC&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
@@ -15,44 +15,36 @@
 
   <header class="site-header">
     <div class="header-ornament">&#10023;</div>
-    <h1 class="site-title">Magic Item Compendium</h1>
-    <p class="site-subtitle">The magic items currently carried by the party, searchable in one place</p>
+    <h1 class="site-title">Compendium</h1>
+    <p class="site-subtitle">Magic items carried by the party and monsters they've encountered, catalogued in one place</p>
     <div class="header-ornament">&#10023;</div>
   </header>
 
   <nav class="site-nav" id="site-nav"></nav>
   <script src="js/nav.js"></script>
 
-  <section class="controls">
-    <div class="control-group control-search">
-      <label for="searchInput">Search by name</label>
-      <input type="text" id="searchInput" placeholder="Search by name...">
-    </div>
-    <div class="control-group">
-      <label for="typeFilter">Type</label>
-      <select id="typeFilter"><option value="">All types</option></select>
-    </div>
-    <div class="control-group">
-      <label for="rarityFilter">Rarity</label>
-      <select id="rarityFilter"><option value="">All rarities</option></select>
-    </div>
-    <div class="control-group control-sale">
-      <label for="attunementFilter">&nbsp;</label>
-      <label class="checkbox-label">
-        <input type="checkbox" id="attunementFilter">
-        <span>Requires attunement only</span>
-      </label>
-    </div>
-    <div class="control-group control-count">
-      <span id="resultCount"></span>
-    </div>
+  <div class="compendium-tabs" role="tablist">
+    <button type="button" class="tab-btn active" id="itemsTabBtn" data-tab="items" role="tab" aria-selected="true" aria-controls="itemsView">Wondrous Items</button>
+    <button type="button" class="tab-btn" id="monstersTabBtn" data-tab="monsters" role="tab" aria-selected="false" aria-controls="monstersView">Monsters</button>
+  </div>
+
+  <section class="compendium-view" id="itemsView" role="tabpanel">
+
+    <main class="item-grid" id="itemGrid" aria-live="polite"></main>
+
+    <p class="empty-state" id="emptyState" hidden>No items in the archive yet.</p>
+
+    <nav class="pagination" id="pagination" aria-label="Page navigation"></nav>
+
   </section>
 
-  <main class="item-grid" id="itemGrid" aria-live="polite"></main>
+  <section class="compendium-view" id="monstersView" role="tabpanel" hidden>
 
-  <p class="empty-state" id="emptyState" hidden>No items in the archive match your search.</p>
+    <div class="gallery-sessions" id="monsterSessions"></div>
 
-  <nav class="pagination" id="pagination" aria-label="Page navigation"></nav>
+    <p class="empty-state" id="monsterEmptyState" hidden>No monsters catalogued yet.</p>
+
+  </section>
 
   <footer class="site-footer">
     <p>Collected from the adventurers of Candlekeep.</p>

@@ -5,26 +5,21 @@
   const EFFECT_TRUNCATE_LENGTH = 220;
 
   const state = {
-    search: '',
-    type: '',
-    rarity: '',
-    attunedOnly: false,
     page: 1,
     items: []
   };
 
   const els = {
-    search: document.getElementById('searchInput'),
-    type: document.getElementById('typeFilter'),
-    rarity: document.getElementById('rarityFilter'),
-    attunedOnly: document.getElementById('attunementFilter'),
     grid: document.getElementById('itemGrid'),
     empty: document.getElementById('emptyState'),
-    count: document.getElementById('resultCount'),
-    pagination: document.getElementById('pagination')
+    pagination: document.getElementById('pagination'),
+    itemsTabBtn: document.getElementById('itemsTabBtn'),
+    monstersTabBtn: document.getElementById('monstersTabBtn'),
+    itemsView: document.getElementById('itemsView'),
+    monstersView: document.getElementById('monstersView'),
+    monsterSessions: document.getElementById('monsterSessions'),
+    monsterEmpty: document.getElementById('monsterEmptyState')
   };
-
-  const RARITY_ORDER = ['Common', 'Uncommon', 'Rare', 'Very Rare', 'Legendary', 'Artifact'];
 
   function titleCase(str) {
     return str.replace(/\w\S*/g, w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase());
@@ -56,28 +51,6 @@
     `;
   }
 
-  function renderFilterOptions() {
-    const types = [...new Set(state.items.map(i => i.type))].sort();
-    const rarities = [...new Set(state.items.map(i => i.rarity))];
-    rarities.sort((a, b) => RARITY_ORDER.indexOf(a) - RARITY_ORDER.indexOf(b));
-
-    els.type.innerHTML = '<option value="">All types</option>' +
-      types.map(t => `<option value="${t}">${t}</option>`).join('');
-    els.rarity.innerHTML = '<option value="">All rarities</option>' +
-      rarities.map(r => `<option value="${r}">${r}</option>`).join('');
-  }
-
-  function filteredItems() {
-    const query = state.search.trim().toLowerCase();
-    return state.items.filter(i => {
-      if (query && !i.name.toLowerCase().includes(query)) return false;
-      if (state.type && i.type !== state.type) return false;
-      if (state.rarity && i.rarity !== state.rarity) return false;
-      if (state.attunedOnly && !i.attuned) return false;
-      return true;
-    });
-  }
-
   function cardHTML(item) {
     const tags = [`<span class="tag">${item.type}</span>`];
     tags.push(`<span class="tag ${rarityClass(item.rarity)}">${item.rarity}</span>`);
@@ -89,7 +62,7 @@
       : '';
 
     const imageHTML = item.image
-      ? `<img class="item-image" src="${item.image}" alt="${item.name}" loading="lazy">`
+      ? `<div class="item-image-wrap"><img class="item-image" src="${item.image}" alt="${item.name}" loading="lazy"></div>`
       : '';
 
     return `
@@ -139,21 +112,15 @@
   }
 
   function renderGrid() {
-    const allMatches = filteredItems();
-    const totalPages = Math.max(1, Math.ceil(allMatches.length / PAGE_SIZE));
+    const totalPages = Math.max(1, Math.ceil(state.items.length / PAGE_SIZE));
     state.page = Math.min(Math.max(1, state.page), totalPages);
 
     const start = (state.page - 1) * PAGE_SIZE;
-    const pageItems = allMatches.slice(start, start + PAGE_SIZE);
+    const pageItems = state.items.slice(start, start + PAGE_SIZE);
 
-    if (allMatches.length === 0) {
-      els.count.textContent = `Showing 0 of ${state.items.length} items`;
-    } else {
-      els.count.textContent = `Showing ${start + 1}–${start + pageItems.length} of ${allMatches.length} items`;
-    }
     els.grid.innerHTML = pageItems.map(cardHTML).join('');
-    els.empty.hidden = allMatches.length !== 0;
-    els.grid.hidden = allMatches.length === 0;
+    els.empty.hidden = state.items.length !== 0;
+    els.grid.hidden = state.items.length === 0;
     renderPagination(totalPages);
   }
 
@@ -168,26 +135,67 @@
     btn.textContent = expand ? 'Read less' : 'Read more...';
   });
 
-  els.search.addEventListener('input', () => {
-    state.search = els.search.value;
-    state.page = 1;
-    renderGrid();
-  });
-  els.type.addEventListener('change', () => {
-    state.type = els.type.value;
-    state.page = 1;
-    renderGrid();
-  });
-  els.rarity.addEventListener('change', () => {
-    state.rarity = els.rarity.value;
-    state.page = 1;
-    renderGrid();
-  });
-  els.attunedOnly.addEventListener('change', () => {
-    state.attunedOnly = els.attunedOnly.checked;
-    state.page = 1;
-    renderGrid();
-  });
+  function switchTab(tab) {
+    const showItems = tab === 'items';
+    els.itemsTabBtn.classList.toggle('active', showItems);
+    els.monstersTabBtn.classList.toggle('active', !showItems);
+    els.itemsTabBtn.setAttribute('aria-selected', String(showItems));
+    els.monstersTabBtn.setAttribute('aria-selected', String(!showItems));
+    els.itemsView.hidden = !showItems;
+    els.monstersView.hidden = showItems;
+  }
+
+  els.itemsTabBtn.addEventListener('click', () => switchTab('items'));
+  els.monstersTabBtn.addEventListener('click', () => switchTab('monsters'));
+
+  function monsterCardHTML(monster) {
+    const description = monster.description
+      ? `<p class="item-description">${monster.description}</p>`
+      : `<p class="item-description unset">Not yet catalogued — the archive's records on this creature are incomplete.</p>`;
+    const info = monster.info ? `<p class="item-effect">${monster.info}</p>` : '';
+    const imageHTML = monster.image
+      ? `<img class="monster-image" src="${monster.image}" alt="${monster.name}" loading="lazy">`
+      : '';
+
+    const challengeHTML = monster.challenge
+      ? `<div class="item-tags"><span class="tag">CR ${monster.challenge}</span></div>`
+      : '';
+
+    return `
+      <article class="item-card monster-card${monster.description ? '' : ' unidentified'}">
+        ${imageHTML}
+        <div class="item-card-header">
+          <h3 class="item-name">${monster.name}</h3>
+        </div>
+        ${challengeHTML}
+        ${description}
+        ${info}
+      </article>
+    `;
+  }
+
+  function renderMonsters(sessions) {
+    let anyMonsters = false;
+    els.monsterSessions.innerHTML = sessions.map(session => {
+      if (!session.monsters.length) return '';
+      anyMonsters = true;
+      return `
+        <section class="gallery-session">
+          <h2 class="gallery-session-title">${session.title}</h2>
+          <div class="item-grid">${session.monsters.map(monsterCardHTML).join('')}</div>
+        </section>
+      `;
+    }).join('');
+    els.monsterEmpty.hidden = anyMonsters;
+  }
+
+  fetch('js/monsters.json')
+    .then(r => r.json())
+    .then(sessions => renderMonsters(sessions))
+    .catch(err => {
+      console.error(err);
+      els.monsterSessions.innerHTML = `<p class="empty-state">The monster archive failed to load: ${err.message}. If you opened this page directly as a file, try serving it from a local web server instead.</p>`;
+    });
 
   Promise.all([
     fetch('js/magic_items.json').then(r => r.json()),
@@ -199,7 +207,6 @@
         .filter(i => owned.has(i.name.toLowerCase()))
         .map(i => ({ ...i, rarity: titleCase(i.rarity), image: owned.get(i.name.toLowerCase()) }))
         .sort((a, b) => a.name.localeCompare(b.name));
-      renderFilterOptions();
       renderGrid();
     })
     .catch(err => {
