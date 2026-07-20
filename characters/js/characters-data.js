@@ -5,7 +5,7 @@ const CHARACTERS = [
   {
     id: "adarna",
     name: "Adarna",
-    image: "images/Adarna.png",
+    image: "images/Adarna.jpeg",
     description: "",
     background: [],
   },
