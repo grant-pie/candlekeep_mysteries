@@ -79,6 +79,11 @@ const SESSIONS = [
         title: "The Meeting II",
         file: "images/session3/The Meeting2.png",
       },
+      {
+        id: "sir-aldric",
+        title: "Sir Aldric",
+        file: "images/session3/Sir Aldric.png",
+      },
     ],
   },
   {
