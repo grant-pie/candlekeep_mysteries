@@ -35,6 +35,20 @@
         <h2 class="character-section-title">Background</h2>
         <div id="background"></div>
       </section>
+
+      <section class="character-section character-tokens-section" id="tokens-section" hidden>
+        <h2 class="character-section-title">Tokens</h2>
+        <div class="character-tokens">
+          <figure class="character-token" id="token-isometric-fig" hidden>
+            <img id="token-isometric" alt="">
+            <figcaption>Isometric</figcaption>
+          </figure>
+          <figure class="character-token" id="token-topdown-fig" hidden>
+            <img id="token-topdown" alt="">
+            <figcaption>Top-Down</figcaption>
+          </figure>
+        </div>
+      </section>
     </div>
   </div>
 
@@ -70,6 +84,29 @@
       p.textContent = line;
       backgroundContainer.appendChild(p);
     }
+
+    const tokensSection = document.getElementById('tokens-section');
+    const showTokensSectionIfNeeded = () => {
+      const isoFig = document.getElementById('token-isometric-fig');
+      const topFig = document.getElementById('token-topdown-fig');
+      if (!isoFig.hidden || !topFig.hidden) {
+        tokensSection.hidden = false;
+      }
+    };
+
+    const [isometricToken, topdownToken] = character.tokens || [];
+
+    const tokenIsoImg = document.getElementById('token-isometric');
+    const tokenIsoFig = document.getElementById('token-isometric-fig');
+    tokenIsoImg.alt = character.name + ' isometric token';
+    tokenIsoImg.onload = () => { tokenIsoFig.hidden = false; showTokensSectionIfNeeded(); };
+    if (isometricToken) tokenIsoImg.src = isometricToken;
+
+    const tokenTopImg = document.getElementById('token-topdown');
+    const tokenTopFig = document.getElementById('token-topdown-fig');
+    tokenTopImg.alt = character.name + ' top-down token';
+    tokenTopImg.onload = () => { tokenTopFig.hidden = false; showTokensSectionIfNeeded(); };
+    if (topdownToken) tokenTopImg.src = topdownToken;
   }
 </script>
 </body>

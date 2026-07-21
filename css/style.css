@@ -1475,6 +1475,34 @@ body {
   margin-bottom: 0;
 }
 
+.character-tokens {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+}
+
+.character-token {
+  margin: 0;
+  text-align: center;
+}
+
+.character-token img {
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
+  border: 3px solid var(--border-brown);
+  border-radius: 50%;
+  display: block;
+  background: var(--card-bg);
+}
+
+.character-token figcaption {
+  margin-top: 0.4rem;
+  font-family: 'IM Fell English SC', serif;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+}
+
 /* ---------- Landing page ---------- */
 
 .landing-intro {
