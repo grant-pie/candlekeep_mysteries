@@ -47,7 +47,7 @@ const SESSIONS = [
       {
         id: "wytchway-the-pig-king",
         title: "Wytchway - The Pig King",
-        file: "https://cm.grantpieterse.com/handouts/images/session3/Wytchway - The Pig King.png",
+        file: "https://cm.grantpieterse.com/Handouts/3/Wytchway - The Pig King.webp",
       },
       {
         id: "wytchway-arrival",
@@ -57,12 +57,12 @@ const SESSIONS = [
       {
         id: "map",
         title: "Map",
-        file: "https://cm.grantpieterse.com/Handouts/3/Wytchway Surrounds.jpg",
+        file: "https://cm.grantpieterse.com/Handouts/3/Wytchway Surrounds.webp",
       },
       {
         id: "figurine",
         title: "Figurine",
-        file: "https://cm.grantpieterse.com/Handouts/3/figurine.png",
+        file: "https://cm.grantpieterse.com/Handouts/3/figurine.webp",
       },
       {
         id: "the-meeting",
@@ -78,6 +78,21 @@ const SESSIONS = [
         id: "sir-aldric",
         title: "Sir Aldric",
         file: "https://cm.grantpieterse.com/Handouts/3/Sir Aldric.webp",
+      },
+      {
+        id: "a-final-letter-to-elira",
+        title: "A Final Letter to Elira",
+        file: "https://cm.grantpieterse.com/Handouts/3/A Final Letter to Elira.webp",
+      },
+      {
+        id: "a-sketch",
+        title: "A sketch",
+        file: "https://cm.grantpieterse.com/Handouts/3/A sketch.webp",
+      },
+      {
+        id: "Journal",
+        title: "Journal",
+        file: "https://cm.grantpieterse.com/Handouts/3/Journal.webp",
       },
     ],
   },
