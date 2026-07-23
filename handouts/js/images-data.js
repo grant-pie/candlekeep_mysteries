@@ -75,11 +75,6 @@ const SESSIONS = [
         file: "https://cm.grantpieterse.com/Handouts/3/The Meeting2.webp",
       },
       {
-        id: "sir-aldric",
-        title: "Sir Aldric",
-        file: "https://cm.grantpieterse.com/Handouts/3/Sir Aldric.webp",
-      },
-      {
         id: "a-final-letter-to-elira",
         title: "A Final Letter to Elira",
         file: "https://cm.grantpieterse.com/Handouts/3/A Final Letter to Elira.webp",
